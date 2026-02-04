@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>PORTFOLIO | 장윤성</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <style>
+    /* 지도 */
+    .map-embed { margin-top:12px; border-radius:12px; overflow:hidden; }
+    .map-embed iframe { width:100%; height:250px; border:0; display:block; }
+
+    /* 인스타 */
+    .insta-content { display:flex; align-items:center; justify-content:center; gap:10px; }
+    .insta-icon { width:28px; height:28px; }
+
+    /* GitHub */
+    .github-box { cursor:pointer; }
+
+    /* ================= 영상 팝업 ================= */
+    .video-modal{
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.8);
+      display:none;
+      justify-content:center; align-items:center;
+      z-index:9999;
+      padding:20px; box-sizing:border-box;
+    }
+
+    .video-wrap{ width:100%; max-width:900px; }
+
+    .video-content{
+      position:relative;
+      width:100%;
+      background:#000;
+      border-radius:12px;
+      overflow:hidden;
+    }
+
+    /* ✅ iframe 대신 video */
+    .video-content video{
+      width:100%;
+      height:auto;
+      display:block;
+      border:none;
+    }
+
+    .close-btn{
+      position:absolute; top:6px; right:12px;
+      font-size:28px; color:#fff;
+      cursor:pointer; z-index:10;
+    }
+
+    .video-help{
+      margin-top:12px; text-align:center; color:#ddd; font-size:14px;
+    }
+
+    .video-help a{
+      color:#4fd1c5; text-decoration:none; font-weight:600;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="top-nav">
+  <h1 class="logo">YS</h1>
+
+  <nav>
+    <ul>
+      <li><a href="#home" class="active">HOME</a></li>
+      <li><a href="#my">MY</a></li>
+      <li><a href="#skill">SKILL</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="home">
+  <div class="home-content">
+    <img src="images/profile.jpg" alt="프로필 사진" class="home-img">
+
+    <div class="home-text">
+      <h2>
+        안녕하세요,<br>
+        <span class="home-name">장윤성</span> 입니다
+      </h2>
+
+      <p class="home-sub">
+        나를 기록하는 개발자 포트폴리오
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MY ================= -->
+<section id="my" class="page">
+  <h2 class="page-title">MY</h2>
+
+  <div class="my-container">
+    <div class="profile-area">
+      <img src="images/profile.jpg" alt="프로필 사진" class="profile-img">
+    </div>
+
+    <div class="info-grid">
+      <article class="info-box"><h3>이름</h3><p>장윤성</p></article>
+      <article class="info-box"><h3>나이</h3><p>25세</p></article>
+      <article class="info-box"><h3>목표</h3><p>끊임없는 노력으로 나아가 백엔드 개발자로 성장하고 싶습니다</p></article>
+      <article class="info-box"><h3>Phone</h3><p>010-5750-6186</p></article>
+
+      <article class="info-box">
+        <h3>거주지</h3>
+        <p>인천광역시 부평구</p>
+        <div class="map-embed">
+          <iframe
+            src="https://www.google.com/maps?q=부평캐슬앤더샵퍼스트&output=embed"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </article>
+
+      <article class="info-box">
+        <h3>Email</h3>
+        <p>chho4202@naver.com</p>
+
+        <a href="https://mail.naver.com/v2/new"
+           target="_blank"
+           class="mail-btn">
+          ✉️ 메일쓰기
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILL ================= -->
+<section id="skill" class="page">
+  <h2 class="page-title">SKILL</h2>
+
+  <section class="skill-layout">
+
+    <!-- PM -->
+    <article class="info-box wide-box">
+      <h3>PM 불법주차 프로젝트</h3>
+      <img src="images/pm_map.png" alt="PM 프로젝트" class="project-img">
+      <p>YOLO 기반 자동 단속 시스템</p>
+
+      <!-- ✅ 시제품 보기(팝업) -->
+      <a href="javascript:void(0);"
+         class="link-btn"
+         onclick="openVideo(); return false;">
+        ▶ 시제품 보기
+      </a>
+    </article>
+
+    <!-- 특허 -->
+    <article class="info-box wide-box">
+      <h3>특허 출원</h3>
+      <img src="images/patent.png" alt="특허" class="row-img">
+      <p>3D 지도 기반 단속 기술</p>
+    </article>
+
+    <!-- 스타벅스 -->
+    <article class="info-box wide-box">
+      <h3>스타벅스 웹페이지</h3>
+      <img src="images/starbucks_banner.png" alt="스타벅스" class="row-img">
+      <p>HTML/CSS 클론</p>
+
+      <!-- ⚠️ 이건 로컬 주소라 GitHub 배포하면 깨짐(나중에 상대경로/배포주소로 바꿔야 함) -->
+      <a href="http://127.0.0.1:5500/0204%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4/index.html"
+         target="_blank"
+         class="link-btn">
+        ▶ 웹페이지 이동
+      </a>
+    </article>
+
+    <!-- Skills -->
+    <article class="info-box skills-box">
+      <h3>Skills</h3>
+      <div class="skill-icon-grid">
+        <div class="skill-card"><img src="images/html.png" alt="HTML"><p>HTML</p></div>
+        <div class="skill-card"><img src="images/css.png" alt="CSS"><p>CSS</p></div>
+        <div class="skill-card"><img src="images/jsp.png" alt="JSP"><p>JSP</p></div>
+        <div class="skill-card"><img src="images/oracle.png" alt="Oracle"><p>Oracle</p></div>
+        <div class="skill-card"><img src="images/aws.png" alt="AWS"><p>AWS</p></div>
+      </div>
+    </article>
+
+  </section>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="page">
+  <h2 class="page-title">CONTACT</h2>
+
+  <section class="contact-container">
+    <article class="info-box contact-box"><h3>Email</h3><p>chho4202@naver.com</p></article>
+
+    <article class="info-box contact-box">
+      <h3>Instagram</h3>
+      <div class="insta-content">
+        <img src="images/instagram.png" alt="Instagram" class="insta-icon">
+        <p>dlb._.wkdd</p>
+      </div>
+    </article>
+
+    <article class="info-box contact-box"><h3>Phone</h3><p>010-5750-6186</p></article>
+
+    <article class="info-box contact-box github-box"
+      onclick="window.open('https://github.com/jangyunsung123/jangyunsung')">
+      <h3>GitHub</h3>
+      <p>github.com/jangyunsung123/jangyunsung</p>
+    </article>
+  </section>
+</section>
+
+<!-- ================= 영상 팝업 ================= -->
+<div id="video-modal" class="video-modal">
+  <div class="video-wrap">
+
+    <div class="video-content">
+      <span class="close-btn" onclick="closeVideo()">×</span>
+
+      <!-- ✅ mp4 재생 -->
+      <video id="project-video" controls>
+        <source src="videos/pm_project.mp4" type="video/mp4">
+        브라우저가 영상을 지원하지 않습니다.
+      </video>
+    </div>
+
+    <div class="video-help">
+      영상이 안 나오면 <a href="videos/pm_project.mp4" target="_blank">새 탭에서 열기</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function openVideo() {
+    const modal = document.getElementById("video-modal");
+    const video = document.getElementById("project-video");
+
+    modal.style.display = "flex";
+    video.currentTime = 0;
+    video.play();
+  }
+
+  function closeVideo() {
+    const modal = document.getElementById("video-modal");
+    const video = document.getElementById("project-video");
+
+    video.pause();
+    modal.style.display = "none";
+  }
+
+  // 배경 클릭 시 닫기
+  document.getElementById("video-modal").addEventListener("click", function(e){
+    if(e.target.id === "video-modal") closeVideo();
+  });
+</script>
+
+</body>
+</html>
